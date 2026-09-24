@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ออกแบบ UI ร้านขาย Digital Product — Pure White Minimal</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#fff;--ink:#111;--mute:#6b6b6b;--line:#ececec;--soft:#f6f6f6}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141414;--ink:#f2f2f2;--mute:#9a9a9a;--line:#2a2a2a;--soft:#1d1d1d}}
+:root[data-theme="dark"]{--bg:#141414;--ink:#f2f2f2;--mute:#9a9a9a;--line:#2a2a2a;--soft:#1d1d1d}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans Thai",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6}
+main{max-width:1040px;margin:0 auto;padding:48px 20px 64px}
+h1{font-size:clamp(28px,5vw,44px);line-height:1.2;margin:0 0 8px;letter-spacing:-.02em}
+h2{font-size:22px;margin:56px 0 4px}
+.sub{color:var(--mute);margin:0 0 24px}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:99px;padding:2px 12px;color:var(--mute);margin-bottom:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.card{border:1px solid var(--line);border-radius:14px;padding:16px}
+.card b{display:block;margin-bottom:2px}
+.card span{color:var(--mute);font-size:14px}
+.sw{display:flex;gap:10px;flex-wrap:wrap}
+.sw div{width:100px;font-size:12px;color:var(--mute)}
+.sw i{display:block;height:52px;border-radius:10px;border:1px solid var(--line);margin-bottom:6px}
+/* mockups: always white (the design being shown) */
+.m{--w:#fff;--k:#111;--g:#8a8a8a;--l:#ececec;--s:#f6f6f6;color:var(--k);background:var(--w);font-size:12px}
+.wrap{overflow-x:auto;padding:4px}
+.browser{min-width:640px;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.bar{display:flex;gap:6px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--l)}
+.bar i{width:9px;height:9px;border-radius:50%;background:#ddd}
+.bar em{margin-left:12px;flex:1;background:var(--s);border-radius:99px;padding:2px 14px;color:var(--g);font-style:normal}
+.nav{display:flex;align-items:center;gap:22px;padding:14px 28px;border-bottom:1px solid var(--l)}
+.nav b{font-size:15px;margin-right:auto}
+.nav span{color:var(--g)}
+.hero{padding:40px 28px 20px;text-align:center}
+.hero h3{font-size:26px;margin:0 0 6px;letter-spacing:-.02em}
+.hero p{margin:0 0 16px;color:var(--g)}
+.search{max-width:380px;margin:0 auto;border:1px solid var(--l);border-radius:99px;padding:9px 16px;color:var(--g);text-align:left}
+.chips{display:flex;gap:8px;justify-content:center;margin:16px 0}
+.chips u{text-decoration:none;border:1px solid var(--l);border-radius:99px;padding:3px 12px;color:var(--g)}
+.chips u.on{background:var(--k);color:var(--w);border-color:var(--k)}
+.prods{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:8px 28px 32px}
+.p .th{aspect-ratio:1;background:var(--s);border-radius:12px;margin-bottom:8px}
+.p b{display:block}.p span{color:var(--g)}
+.btn{display:inline-block;background:var(--k);color:var(--w);border-radius:8px;padding:6px 14px}
+.btn.o{background:var(--w);color:var(--k);border:1px solid var(--k)}
+.row3{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start;justify-content:center}
+.phone{width:280px;border:8px solid #111;border-radius:36px;overflow:hidden;background:var(--w)}
+.phone .in{padding:18px 16px;min-height:460px}
+.phone h4{margin:0 0 10px;font-size:18px}
+.li{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--l)}
+.li .th{width:44px;height:44px;border-radius:10px;background:var(--s);flex:none}
+.li div{flex:1}.li b{display:block}.li span{color:var(--g)}
+.tab{display:flex;justify-content:space-around;border-top:1px solid var(--l);padding:10px 0;color:var(--g)}
+.tab b{color:var(--k)}
+.desk{min-width:640px;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:grid;grid-template-columns:170px 1fr;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.side{border-right:1px solid var(--l);padding:16px 12px;background:var(--s)}
+.side b{display:block;margin-bottom:14px;font-size:14px}
+.side div{padding:7px 10px;border-radius:8px;color:var(--g)}
+.side div.on{background:var(--w);color:var(--k);box-shadow:0 0 0 1px var(--l)}
+.cont{padding:20px 24px}
+.cont h4{margin:0 0 12px;font-size:17px}
+.dl{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--l)}
+.dl .th{width:40px;height:40px;border-radius:10px;background:var(--s)}
+.dl div{flex:1}.dl b{display:block}.dl span{color:var(--g)}
+ul{padding-left:20px;margin:6px 0}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;align-items:start}
+.field{border:1px solid var(--l);border-radius:8px;padding:9px 12px;color:var(--g);margin:0 0 10px}
+.full{display:block;text-align:center;padding:10px}
+.sep{text-align:center;color:var(--g);margin:12px 0}
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:28px}
+.big{aspect-ratio:4/3;background:var(--s);border-radius:14px}
+.thumbs{display:flex;gap:8px;margin-top:8px}.thumbs i{flex:1;aspect-ratio:1;background:var(--s);border-radius:8px}
+.detail h3{margin:0 0 4px;font-size:22px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.stat{border:1px solid var(--l);border-radius:10px;padding:10px}.stat span{color:var(--g)}.stat b{display:block;font-size:18px}
+.t{width:100%;border-collapse:collapse}.t td,.t th{text-align:left;padding:8px 6px;border-bottom:1px solid var(--l)}.t th{color:var(--g);font-weight:500}
+.drop{border:1px dashed #cfcfcf;border-radius:10px;padding:14px;text-align:center;color:var(--g)}
+.chart{border:1px solid var(--l);border-radius:10px;padding:10px;margin-bottom:14px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:24px 28px}
+footer{margin-top:56px;color:var(--mute);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+</style>
+</head>
+<body>
+<main>
+<span class="tag">Mini Project · UI Design</span>
+<h1>ร้านขาย Digital Product<br>ดีไซน์ขาวล้วน เรียบง่าย</h1>
+<p class="sub">ออกแบบ UI 3 แพลตฟอร์ม: Web App · Mobile App · Desktop App ให้ใช้ภาษาดีไซน์เดียวกัน</p>
+
+<h2>แนวคิดการออกแบบ (Concept)</h2>
+<p class="sub">"ให้สินค้าเป็นพระเอก ส่วน UI หายไปให้มากที่สุด"</p>
+<div class="grid3">
+<div class="card"><b>1. ขาวล้วน (Pure White)</b><span>พื้นหลังขาว ใช้เส้นบางสีเทาอ่อนแบ่งส่วน แทนเงาหนักและสีสัน</span></div>
+<div class="card"><b>2. สีเน้นสีเดียว</b><span>ใช้สีดำเป็นปุ่มหลักเท่านั้น ทำให้ปุ่มซื้อเด่นชัดโดยไม่ต้องใช้สีอื่น</span></div>
+<div class="card"><b>3. ช่องว่างเยอะ</b><span>เว้นระยะกว้าง อ่านง่าย สแกนสินค้าได้เร็ว ลดความรก</span></div>
+<div class="card"><b>4. ประสบการณ์เดียวกัน</b><span>โครงสร้าง ปุ่ม และไอคอนเหมือนกันทุกอุปกรณ์ แค่ปรับเลย์เอาต์ตามหน้าจอ</span></div>
+</div>
+
+<h2>Design Tokens</h2>
+<p class="sub">ชุดสีและตัวอักษรที่ใช้ทั้งระบบ</p>
+<div class="sw">
+<div><i style="background:#fff"></i>#FFFFFF<br>พื้นหลัง</div>
+<div><i style="background:#f6f6f6"></i>#F6F6F6<br>การ์ด / รูปสินค้า</div>
+<div><i style="background:#ececec"></i>#ECECEC<br>เส้นขอบ</div>
+<div><i style="background:#8a8a8a"></i>#8A8A8A<br>ข้อความรอง</div>
+<div><i style="background:#111"></i>#111111<br>ข้อความ / ปุ่มหลัก</div>
+</div>
+<ul style="font-size:14px">
+<li>ฟอนต์: Noto Sans Thai (ไทย) + Inter (อังกฤษ) น้ำหนัก 400 / 500 / 600</li>
+<li>มุมโค้ง: การ์ด 12–14px, ปุ่ม 8px, ช่องค้นหา / แท็ก แบบแคปซูล</li>
+<li>เส้นขอบ 1px แทนเงา · ไอคอนแบบเส้นบาง (Line icon)</li>
+</ul>
+
+<h2>1) Web App</h2>
+<p class="sub">หน้าแรกร้านค้า: ค้นหา + หมวดหมู่ + ตารางสินค้า</p>
+<div class="wrap"><div class="browser m">
+<div class="bar"><i></i><i></i><i></i><em>digitalstore.app</em></div>
+<div class="nav"><b>DigitalStore</b><span>สินค้า</span><span>หมวดหมู่</span><span>คลังของฉัน</span><span>ตะกร้า (2)</span></div>
+<div class="hero"><h3>Digital Product for a Better You</h3><p>เทมเพลต ไอคอน คอร์ส และ E-Book ดาวน์โหลดได้ทันที</p>
+<div class="search">ค้นหาเทมเพลต ไอคอน คอร์ส…</div>
+<div class="chips"><u class="on">ทั้งหมด</u><u>เทมเพลต</u><u>ดีไซน์</u><u>E-Book</u><u>คอร์ส</u></div></div>
+<div class="prods">
+<div class="p"><div class="th"></div><b>Notion Template</b><span>฿299</span></div>
+<div class="p"><div class="th"></div><b>UI Icon Pack</b><span>฿399</span></div>
+<div class="p"><div class="th"></div><b>E-Book Marketing</b><span>฿199</span></div>
+<div class="p"><div class="th"></div><b>Source Code Shop</b><span>฿590</span></div>
+</div></div></div>
+
+<h2>2) Mobile App</h2>
+<p class="sub">ใช้มือเดียวสะดวก: แถบเมนูล่าง 4 ปุ่ม, รายการสินค้าแนวตั้ง, ปุ่มซื้ออยู่ในระยะนิ้วโป้ง</p>
+<div class="row3 m" style="background:none">
+<div class="phone m"><div class="in"><h4>ค้นหาสินค้า</h4>
+<div class="search" style="margin-bottom:12px">ค้นหา…</div>
+<div class="chips" style="justify-content:flex-start;margin:8px 0"><u class="on">ทั้งหมด</u><u>ยอดนิยม</u><u>ใหม่</u></div>
+<div class="li"><div class="th"></div><div><b>Notion Template</b><span>฿299</span></div><span class="btn">ซื้อ</span></div>
+<div class="li"><div class="th"></div><div><b>UI Icon Pack</b><span>฿399</span></div><span class="btn">ซื้อ</span></div>
+<div class="li"><div class="th"></div><div><b>E-Book</b><span>฿199</span></div><span class="btn">ซื้อ</span></div></div>
+<div class="tab"><b>หน้าแรก</b><span>ตะกร้า</span><span>คลัง</span><span>โปรไฟล์</span></div></div>
+<div class="phone m"><div class="in"><h4>ตะกร้าสินค้า</h4>
+<div class="li"><div class="th"></div><div><b>Notion Template</b><span>฿299</span></div></div>
+<div class="li"><div class="th"></div><div><b>UI Icon Pack</b><span>฿399</span></div></div>
+<p style="display:flex;justify-content:space-between;margin:18px 0 12px"><span style="color:var(--g)">รวมทั้งหมด</span><b style="font-size:16px">฿698</b></p>
+<div class="btn" style="display:block;text-align:center;padding:12px;font-size:14px">ชำระเงิน</div>
+<p style="color:var(--g);text-align:center;margin-top:12px">ดาวน์โหลดได้ทันทีหลังชำระเงิน</p></div>
+<div class="tab"><span>หน้าแรก</span><b>ตะกร้า</b><span>คลัง</span><span>โปรไฟล์</span></div></div>
+</div>
+
+<h2>3) Desktop App</h2>
+<p class="sub">เน้นจัดการไฟล์: แถบเมนูซ้าย + หน้า "คลังของฉัน" พร้อมปุ่มดาวน์โหลด</p>
+<div class="wrap"><div class="desk m">
+<div class="side"><b>DigitalStore</b><div>หน้าแรก</div><div>ร้านค้า</div><div class="on">คลังของฉัน</div><div>ดาวน์โหลด</div><div>ตั้งค่า</div></div>
+<div class="cont"><h4>คลังของฉัน</h4>
+<div class="dl"><div class="th"></div><div><b>Notion Template</b><span>ซื้อแล้ว · 2 ไฟล์</span></div><span class="btn o">ดาวน์โหลด</span></div>
+<div class="dl"><div class="th"></div><div><b>UI Icon Pack</b><span>ซื้อแล้ว · 1 ไฟล์</span></div><span class="btn o">ดาวน์โหลด</span></div>
+<div class="dl"><div class="th"></div><div><b>E-Book Marketing</b><span>ซื้อแล้ว · 1 ไฟล์</span></div><span class="btn o">ดาวน์โหลด</span></div>
+</div></div></div>
+
+<h2>4) หน้า Login / สมัครสมาชิก</h2>
+<p class="sub">ล็อกอินด้วย Email หรือ Google (Supabase Auth) · Web และ Mobile ใช้ฟอร์มเดียวกัน Desktop เปิดเป็นหน้าต่างเล็กกลางจอ</p>
+<div class="two m" style="background:none">
+<div class="browser m" style="min-width:0"><div class="bar"><i></i><i></i><i></i><em>digitalstore.app/login</em></div>
+<div style="padding:32px 28px;max-width:340px;margin:0 auto"><b style="font-size:18px">เข้าสู่ระบบ</b><p style="color:var(--g);margin:2px 0 16px">ยินดีต้อนรับกลับมา</p>
+<div class="field">อีเมล</div><div class="field">รหัสผ่าน</div>
+<span class="btn full">เข้าสู่ระบบ</span><div class="sep">หรือ</div>
+<span class="btn o full">ดำเนินการต่อด้วย Google</span>
+<p style="text-align:center;color:var(--g);margin:14px 0 0">ยังไม่มีบัญชี? <b style="color:var(--k)">สมัครสมาชิก</b></p></div></div>
+<div class="phone m" style="margin:0 auto"><div class="in" style="padding-top:40px"><h4 style="font-size:22px">สร้างบัญชีใหม่</h4>
+<p style="color:var(--g);margin:0 0 16px">เริ่มซื้อ-ขาย Digital Product</p>
+<div class="field">ชื่อ-นามสกุล</div><div class="field">อีเมล</div><div class="field">รหัสผ่าน (8 ตัวขึ้นไป)</div>
+<span class="btn full">สมัครสมาชิก</span><div class="sep">หรือ</div><span class="btn o full">สมัครด้วย Google</span></div></div>
+</div>
+
+<h2>5) หน้ารายละเอียดสินค้า</h2>
+<p class="sub">รูปตัวอย่างใหญ่ · ราคา · ปุ่มซื้อชัด · รายการไฟล์ที่จะได้รับ</p>
+<div class="two m" style="background:none;grid-template-columns:2fr 1fr">
+<div class="browser m" style="min-width:0"><div class="bar"><i></i><i></i><i></i><em>digitalstore.app/product/notion-template</em></div>
+<div class="detail"><div><div class="big"></div><div class="thumbs"><i></i><i></i><i></i><i></i></div></div>
+<div><span style="color:var(--g)">เทมเพลต</span><h3>Notion Template</h3>
+<p style="color:var(--g);margin:0 0 12px">ชุดเทมเพลตจัดการงานและโปรเจกต์ พร้อมใช้งานทันที</p>
+<div style="font-size:24px;font-weight:600;margin-bottom:14px">฿299</div>
+<span class="btn full" style="margin-bottom:8px">ซื้อเลย</span><span class="btn o full">เพิ่มลงตะกร้า</span>
+<p style="margin:16px 0 4px"><b>ไฟล์ที่ได้รับ</b></p><div style="color:var(--g)">📄 template.zip · 2.4 MB<br>📄 คู่มือการใช้งาน.pdf · 1.1 MB</div>
+<p style="color:var(--g);margin-top:12px">ดาวน์โหลดได้ทันทีหลังชำระเงิน</p></div></div></div>
+<div class="phone m" style="margin:0 auto;width:250px"><div class="in"><div class="big" style="aspect-ratio:1"></div>
+<h4 style="margin:12px 0 2px">Notion Template</h4><span style="color:var(--g)">เทมเพลต · ดาวน์โหลดทันที</span>
+<div style="font-size:20px;font-weight:600;margin:10px 0">฿299</div>
+<span class="btn full">ซื้อเลย</span></div></div>
+</div>
+
+<h2>6) ชำระเงิน &amp; ประวัติคำสั่งซื้อ</h2>
+<p class="sub">ชำระเงินออนไลน์ผ่าน Stripe · ระบบบันทึกออเดอร์ · ดาวน์โหลดไฟล์อัตโนมัติ · ดูประวัติย้อนหลัง</p>
+<div class="wrap"><div class="browser m"><div class="bar"><i></i><i></i><i></i><em>digitalstore.app/checkout</em></div>
+<div class="cols"><div><b style="font-size:16px">ชำระเงิน</b>
+<div class="li"><div class="th"></div><div><b>Notion Template</b><span>฿299</span></div></div>
+<div class="li"><div class="th"></div><div><b>UI Icon Pack</b><span>฿399</span></div></div>
+<div class="field" style="margin-top:12px">เลขบัตร · MM/YY · CVC</div>
+<span class="btn full">ชำระเงิน ฿698</span><p style="color:var(--g)">ชำระเงินปลอดภัยด้วย Stripe</p></div>
+<div><b style="font-size:16px">ประวัติคำสั่งซื้อ</b>
+<table class="t"><tr><th>ออเดอร์</th><th>สินค้า</th><th>ยอด</th><th></th></tr>
+<tr><td>#1042</td><td>Notion Template</td><td>฿299</td><td><span class="btn o">ดาวน์โหลด</span></td></tr>
+<tr><td>#1038</td><td>E-Book</td><td>฿199</td><td><span class="btn o">ดาวน์โหลด</span></td></tr>
+<tr><td>#1031</td><td>UI Icon Pack</td><td>฿399</td><td><span class="btn o">ดาวน์โหลด</span></td></tr></table>
+<p style="color:var(--g)">หลังชำระเงินสำเร็จ ไฟล์จะถูกส่งให้อัตโนมัติ</p></div></div></div></div>
+
+<h2>7) Admin Dashboard (ระบบหลังบ้าน)</h2>
+<p class="sub">ภาพรวมยอดขาย · จัดการสินค้า · ผู้ใช้ · ออเดอร์ · Import / Export CSV, Excel, JSON</p>
+<div class="wrap"><div class="desk m" style="min-width:760px;grid-template-columns:150px 1fr">
+<div class="side"><b>DigitalStore</b><div class="on">Dashboard</div><div>สินค้า</div><div>ออเดอร์</div><div>ลูกค้า</div><div>รายงาน</div><div>ตั้งค่า</div></div>
+<div class="cont"><h4>Dashboard</h4>
+<div class="stats"><div class="stat"><span>ยอดขายรวม</span><b>฿24,500</b></div><div class="stat"><span>ออเดอร์</span><b>320</b></div><div class="stat"><span>ลูกค้า</span><b>512</b></div><div class="stat"><span>สินค้า</span><b>86</b></div></div>
+<div class="chart"><b>ภาพรวมยอดขาย</b>
+<svg viewBox="0 0 400 90" width="100%" height="90" preserveAspectRatio="none"><polyline points="0,75 60,62 120,68 180,45 240,50 300,28 360,18 400,10" fill="none" stroke="#111" stroke-width="2"/><line x1="0" y1="88" x2="400" y2="88" stroke="#ececec"/></svg></div>
+<div class="cols" style="padding:0;gap:14px">
+<div><b>สินค้าขายดี</b><table class="t"><tr><td>Notion Template</td><td>120</td></tr><tr><td>UI Icon Pack</td><td>85</td></tr><tr><td>E-Book</td><td>60</td></tr></table></div>
+<div><b>จัดการสินค้า</b><p style="margin:6px 0"><span class="btn">+ เพิ่มสินค้า</span> <span class="btn o">แก้ไข</span> <span class="btn o">ลบ</span></p>
+<div class="drop">Import / Export<br><span class="btn o">Import CSV</span> <span class="btn o">Export CSV</span><br><span class="btn o" style="margin-top:6px">Import JSON</span> <span class="btn o" style="margin-top:6px">Export JSON</span></div></div></div>
+</div></div></div>
+
+<h2>8) Desktop App: Login · รายละเอียดสินค้า · ชำระเงิน</h2>
+<p class="sub">หน้าต่างแอปบนคอมพิวเตอร์ ใช้ภาษาดีไซน์เดียวกับ Web แต่มีเมนูซ้ายและหน้าต่างขนาดพอดีงาน</p>
+<div class="two m" style="background:none">
+<div class="browser m" style="min-width:0"><div class="bar"><i></i><i></i><i></i><em>DigitalStore</em></div>
+<div style="padding:28px;max-width:300px;margin:0 auto"><b style="font-size:17px">เข้าสู่ระบบ</b><p style="color:var(--g);margin:2px 0 14px">DigitalStore Desktop</p>
+<div class="field">อีเมล</div><div class="field">รหัสผ่าน</div><span class="btn full">เข้าสู่ระบบ</span><div class="sep">หรือ</div><span class="btn o full">ดำเนินการต่อด้วย Google</span></div></div>
+<div class="browser m" style="min-width:0"><div class="bar"><i></i><i></i><i></i><em>DigitalStore · ร้านค้า</em></div>
+<div style="display:grid;grid-template-columns:110px 1fr"><div class="side"><div>หน้าแรก</div><div class="on">ร้านค้า</div><div>คลังของฉัน</div><div>ตั้งค่า</div></div>
+<div class="cont"><div class="big" style="aspect-ratio:16/8"></div><h4 style="margin:10px 0 2px">Notion Template</h4><span style="color:var(--g)">เทมเพลต · ไฟล์ zip, pdf</span>
+<p style="margin:10px 0"><b style="font-size:18px">฿299</b> &nbsp;<span class="btn">ซื้อเลย</span> <span class="btn o">ใส่ตะกร้า</span></p></div></div></div>
+<div class="browser m" style="min-width:0"><div class="bar"><i></i><i></i><i></i><em>DigitalStore · ชำระเงิน</em></div>
+<div style="display:grid;grid-template-columns:110px 1fr"><div class="side"><div>หน้าแรก</div><div>ร้านค้า</div><div class="on">ตะกร้า</div><div>ประวัติ</div></div>
+<div class="cont"><h4>ชำระเงิน</h4><div class="li"><div class="th"></div><div><b>Notion Template</b><span>฿299</span></div></div><div class="li"><div class="th"></div><div><b>UI Icon Pack</b><span>฿399</span></div></div>
+<div class="field" style="margin-top:10px">เลขบัตร · MM/YY · CVC</div><span class="btn full">ชำระเงิน ฿698</span></div></div></div>
+<div class="browser m" style="min-width:0"><div class="bar"><i></i><i></i><i></i><em>DigitalStore · ประวัติคำสั่งซื้อ</em></div>
+<div style="display:grid;grid-template-columns:110px 1fr"><div class="side"><div>หน้าแรก</div><div>ร้านค้า</div><div>ตะกร้า</div><div class="on">ประวัติ</div></div>
+<div class="cont"><h4>ประวัติคำสั่งซื้อ</h4><table class="t"><tr><td>#1042</td><td>Notion Template</td><td><span class="btn o">ดาวน์โหลด</span></td></tr><tr><td>#1038</td><td>E-Book</td><td><span class="btn o">ดาวน์โหลด</span></td></tr><tr><td>#1031</td><td>UI Icon Pack</td><td><span class="btn o">ดาวน์โหลด</span></td></tr></table></div></div></div>
+</div>
+
+<h2>9) Mobile App: ประวัติ · คลังของฉัน · Admin</h2>
+<p class="sub">หน้าที่เหลือบนมือถือ ใช้แถบเมนูล่างและปุ่มขนาดพอดีนิ้ว</p>
+<div class="row3 m" style="background:none">
+<div class="phone m"><div class="in"><h4>ประวัติคำสั่งซื้อ</h4>
+<div class="li"><div class="th"></div><div><b>Notion Template</b><span>#1042 · ฿299</span></div><span class="btn o">โหลด</span></div>
+<div class="li"><div class="th"></div><div><b>E-Book</b><span>#1038 · ฿199</span></div><span class="btn o">โหลด</span></div>
+<div class="li"><div class="th"></div><div><b>UI Icon Pack</b><span>#1031 · ฿399</span></div><span class="btn o">โหลด</span></div></div>
+<div class="tab"><span>หน้าแรก</span><span>ตะกร้า</span><b>คลัง</b><span>โปรไฟล์</span></div></div>
+<div class="phone m"><div class="in"><h4>คลังของฉัน</h4>
+<div class="li"><div class="th"></div><div><b>Notion Template</b><span>ซื้อแล้ว · 2 ไฟล์</span></div></div>
+<div class="li"><div class="th"></div><div><b>UI Icon Pack</b><span>ซื้อแล้ว · 1 ไฟล์</span></div></div>
+<div class="li"><div class="th"></div><div><b>E-Book</b><span>ซื้อแล้ว · 1 ไฟล์</span></div></div>
+<span class="btn full" style="margin-top:14px">ดาวน์โหลดทั้งหมด</span></div>
+<div class="tab"><span>หน้าแรก</span><span>ตะกร้า</span><b>คลัง</b><span>โปรไฟล์</span></div></div>
+<div class="phone m"><div class="in"><h4>Admin Dashboard</h4>
+<div class="stats" style="grid-template-columns:1fr 1fr"><div class="stat"><span>ยอดขาย</span><b>฿24,500</b></div><div class="stat"><span>ออเดอร์</span><b>320</b></div><div class="stat"><span>ลูกค้า</span><b>512</b></div><div class="stat"><span>สินค้า</span><b>86</b></div></div>
+<div class="chart"><svg viewBox="0 0 200 50" width="100%" height="50" preserveAspectRatio="none"><polyline points="0,40 40,32 80,36 120,20 160,14 200,6" fill="none" stroke="#111" stroke-width="2"/></svg></div>
+<span class="btn full" style="margin-bottom:6px">+ เพิ่มสินค้า</span><span class="btn o full">Import / Export</span></div>
+<div class="tab"><b>ภาพรวม</b><span>สินค้า</span><span>ออเดอร์</span><span>ลูกค้า</span></div></div>
+</div>
+
+<h2>ฟีเจอร์ครบตามโจทย์</h2>
+<div class="grid3">
+<div class="card"><b>✓ สมัครสมาชิก / Login</b><span>หัวข้อ 4</span></div>
+<div class="card"><b>✓ แสดงรายการ / ค้นหา / หมวดหมู่</b><span>หัวข้อ 1–3 (Web · Mobile · Desktop)</span></div>
+<div class="card"><b>✓ ตะกร้า &amp; สั่งซื้อ</b><span>หัวข้อ 2, 6</span></div>
+<div class="card"><b>✓ ชำระเงินออนไลน์ (Stripe)</b><span>หัวข้อ 6</span></div>
+<div class="card"><b>✓ ดาวน์โหลดไฟล์อัตโนมัติ</b><span>หัวข้อ 3, 5, 6</span></div>
+<div class="card"><b>✓ ประวัติคำสั่งซื้อ</b><span>หัวข้อ 6</span></div>
+<div class="card"><b>✓ Admin / Dashboard / Import-Export</b><span>หัวข้อ 7</span></div>
+</div>
+
+<h2>ผู้ใช้ทำอะไรได้บ้าง (User Flow)</h2>
+<p class="sub">เลือกสินค้า → ใส่ตะกร้า → ชำระเงิน → ระบบบันทึก → ดาวน์โหลดทันที</p>
+
+<footer>โปรเจกต์: ร้านขาย Digital Product · Tech: Next.js / React Native / Electron + Supabase + Vercel · ดีไซน์ Pure White Minimal</footer>
+</main>
+</body>
+</html>
